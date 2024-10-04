@@ -1,16 +1,15 @@
-// api/send-email.js
 import emailjs from 'emailjs-com';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { email } = req.body;
+    const { email, full_name, message } = req.body;
 
     try {
       const response = await emailjs.send(
-        process.env.EMAILJS_SERVICE_ID, // Your EmailJS service ID
-        process.env.EMAILJS_TEMPLATE_ID, // Your EmailJS template ID
-        { user_email: email }, // Data to be sent in the email
-        process.env.EMAILJS_PRIVATE_KEY // Use the private key for sending
+        process.env.EMAILJS_SERVICE_ID,
+        process.env.EMAILJS_TEMPLATE_ID,
+        { user_email: email, user_name: full_name, user_message: message },
+        process.env.EMAILJS_PRIVATE_KEY
       );
 
       res.status(200).json({ message: 'Email sent successfully' });
