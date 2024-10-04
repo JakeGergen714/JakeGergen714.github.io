@@ -19,6 +19,8 @@ const App: React.FC = () => {
       duration: 1000, // Animation duration in milliseconds
       easing: 'ease-in-out', // Easing option for the animations
       once: true, // Whether the animation should happen only once
+      offset: -200, // Set a lower offset to start animations earlier
+      delay: 0, // Ensure there is no initial delay in animation
     });
   }, []);
 
@@ -176,7 +178,7 @@ const App: React.FC = () => {
           <div>
             <h1 className='title'>Anything you need to grow your business</h1>
             <div className='grid sm:grid-cols-2 md:grid-cols-3 mt-8 gap-16'>
-              <div className='flex flex-col items-start' data-aos='fade-right'>
+              <div className='flex flex-col items-start' data-aos='fade-left'>
                 <div className='service-card'>
                   <CgWebsite className='service-icon text-2xl mr-2' />
                   <div className='service-title'>Custom Website Creations</div>
@@ -185,9 +187,12 @@ const App: React.FC = () => {
                   Beautifully crafted websites tailored to your business needs.
                 </p>
               </div>
-              <div className='flex flex-col items-start' data-aos='fade-up'>
+              <div className='flex flex-col items-start'>
                 <div className='service-card'>
-                  <ImMobile className='service-icon text-2xl mr-2' />
+                  <ImMobile
+                    className='service-icon text-2xl mr-2'
+                    data-aos='fade-right'
+                  />
                   <div className='service-title'>Mobile App Solutions</div>
                 </div>
                 <p className='service-description'>
