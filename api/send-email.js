@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
     // Configure the transporter with your email provider details
     const transporter = nodemailer.createTransport({
-      host: 'smtp.example.com', // Replace with your SMTP server (e.g., smtp.gmail.com for Gmail)
+      host: 'smtp.gmail.com', // Replace with your SMTP server (e.g., smtp.gmail.com for Gmail)
       port: 587, // Use 465 for secure, or 587/2525 for non-secure
       secure: false, // true for 465, false for other ports
       auth: {
