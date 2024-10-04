@@ -141,7 +141,7 @@ const App: React.FC = () => {
         {/* Increased padding-top and set text-left */}
         <div className='grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24'>
           <div>
-            <h1 className=' text-black text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter'>
+            <h1 className='text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter'>
               Gergen Software Contracting
             </h1>
             <p className='text-lg mt-4 text-slate-600 max-w-xl'>
