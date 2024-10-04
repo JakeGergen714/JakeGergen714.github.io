@@ -15,7 +15,11 @@ const App: React.FC = () => {
     e.preventDefault();
 
     if (form.current) {
-      const emailData = { email: form.current.user_email.value }; // Ensure this matches your input field's name
+      const emailData = {
+        full_name: form.current.full_name.value,
+        contact_info: form.current.contact_info.value,
+        message: form.current.message.value,
+      };
 
       try {
         const response = await fetch('/api/send-email', {
