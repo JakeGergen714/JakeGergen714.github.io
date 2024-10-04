@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import Header from './components/Header';
 import { CgWebsite } from 'react-icons/cg';
 import { ImMobile } from 'react-icons/im';
@@ -8,6 +8,42 @@ import { SiSpringsecurity } from 'react-icons/si';
 import { GrHost } from 'react-icons/gr';
 
 const App: React.FC = () => {
+  const form = useRef<HTMLFormElement>(null);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
+  const sendEmail = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (form.current) {
+      const emailData = { email: form.current.user_email.value }; // Ensure this matches your input field's name
+
+      try {
+        const response = await fetch('/api/send-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(emailData),
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to send email');
+        }
+
+        console.log('SUCCESS!');
+        form.current.reset(); // Reset the form
+        setShowSuccessPopup(true); // Show success popup
+
+        // Hide the popup after 3 seconds
+        setTimeout(() => {
+          setShowSuccessPopup(false);
+        }, 3000);
+      } catch (error) {
+        console.log('FAILED...', error);
+      }
+    }
+  };
+
   return (
     <div className='flex flex-col min-h-screen max-w-7xl mx-auto px-4 font-custom'>
       <Header />
@@ -127,13 +163,49 @@ const App: React.FC = () => {
             </h2>
           </div>
         </div>
-        <div id='contact' className='Container mb-24'>
+        <div id='contact' className='Container mb-16'>
           <h1 className='text-3xl font-bold mb-4'>Contact Us</h1>
           <div className='grid md:grid-cols-2 max-w-4xl mt-8'>
             <div className='flex flex-col gap-4 text-left text-slate-600 leading-relaxed'>
               <p>✉️ info@gergensoftware.com</p>
               <p className='mb-8'>+1 (123) 456-7890</p>
             </div>
+            {/* Success Popup */}
+
+            <form
+              ref={form}
+              onSubmit={sendEmail}
+              className='flex flex-col gap-4 text-slate-600 leading-relaxed service-description'
+            >
+              <input
+                type='text'
+                placeholder='Full Name'
+                name='full_name'
+                className='border rounded-md p-2'
+              />
+              <input
+                type='email'
+                name='contact_info'
+                placeholder='Email Address or Phone Number'
+                className='border rounded-md p-2'
+              />
+              <textarea
+                name='message'
+                placeholder='How can we help?'
+                className='border rounded-md p-2'
+              ></textarea>
+              {showSuccessPopup && (
+                <div className='bg-green-500 text-white py-2 px-4 rounded-md shadow-md'>
+                  Message sent successfully!
+                </div>
+              )}
+              <button
+                type='submit'
+                className='bg-black text-white p-2 rounded-md'
+              >
+                Send Message
+              </button>
+            </form>
           </div>
         </div>
       </main>
