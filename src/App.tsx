@@ -174,7 +174,7 @@ const App: React.FC = () => {
             className='h-full w-2/3 object-contain hidden lg:flex'
           />
         </div>
-        <div id='services' className='Container' data-aos='fade-up'>
+        <div id='services' className='Container' data-aos='fade-right'>
           <div>
             <h1 className='title'>Anything you need to grow your business</h1>
             <div className='grid sm:grid-cols-2 md:grid-cols-3 mt-8 gap-16'>
