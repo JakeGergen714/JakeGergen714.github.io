@@ -277,7 +277,7 @@ const App: React.FC = () => {
           <div className='grid md:grid-cols-2 max-w-4xl mt-8'>
             <div className='flex flex-col gap-4 text-left text-slate-600 leading-relaxed'>
               <p>info@gergensoftware.com</p>
-              <p className='mb-8'>+1 (123) 456-7890</p>
+              <p className='mb-8'>+1 (571) 382-0818</p>
             </div>
             <form
               ref={form}
