@@ -19,7 +19,7 @@ export default async function handler(req, res) {
       // Send the email
       await transporter.sendMail({
         from: process.env.SMTP_USER, // Sender address
-        to: email || process.env.DEFAULT_RECIPIENT_EMAIL, // Receiver's email address
+        to: process.env.SMTP_USER, // Receiver's email address
         subject: 'New Message from Your Website Contact Form',
         text: `Hello,\n\nYou have received a new message from your website contact form.\n\nFull Name: ${full_name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}\n\nBest regards,\nYour Website Team`,
       });
