@@ -19,8 +19,6 @@ const App: React.FC = () => {
       duration: 1000, // Animation duration in milliseconds
       easing: 'ease-in-out', // Easing option for the animations
       once: true, // Whether the animation should happen only once
-      offset: -200, // Set a lower offset to start animations earlier
-      delay: 0, // Ensure there is no initial delay in animation
     });
   }, []);
 
@@ -187,7 +185,7 @@ const App: React.FC = () => {
                   Beautifully crafted websites tailored to your business needs.
                 </p>
               </div>
-              <div className='flex flex-col items-start'>
+              <div className='flex flex-col items-start' data-aos='fade-left'>
                 <div className='service-card'>
                   <ImMobile className='service-icon text-2xl mr-2' />
                   <div className='service-title'>Mobile App Solutions</div>
@@ -197,7 +195,7 @@ const App: React.FC = () => {
                   go.
                 </p>
               </div>
-              <div className='flex flex-col items-start'>
+              <div className='flex flex-col items-start' data-aos='fade-right'>
                 <div className='service-card'>
                   <GiPlatform className='service-icon text-2xl mr-2' />
                   <div className='service-title'>
@@ -208,7 +206,7 @@ const App: React.FC = () => {
                   Integrated platforms that streamline your business operations.
                 </p>
               </div>
-              <div className='flex flex-col items-start'>
+              <div className='flex flex-col items-start' data-aos='fade-left'>
                 <div className='service-card'>
                   <MdConveyorBelt className='service-icon text-2xl mr-2' />
                   <div className='service-title'>
@@ -219,7 +217,7 @@ const App: React.FC = () => {
                   Tools to automate and enhance your daily workflow efficiently.
                 </p>
               </div>
-              <div className='flex flex-col items-start'>
+              <div className='flex flex-col items-start' data-aos='fade-right'>
                 <div className='service-card'>
                   <SiSpringsecurity className='service-icon text-2xl mr-2' />
                   <div className='service-title'>Security Enhancements</div>
@@ -228,7 +226,7 @@ const App: React.FC = () => {
                   Advanced security solutions to protect your digital assets.
                 </p>
               </div>
-              <div className='flex flex-col items-start'>
+              <div className='flex flex-col items-start' data-aos='fade-left'>
                 <div className='service-card'>
                   <GrHost className='service-icon text-2xl mr-2' />
                   <div className='service-title'>
@@ -242,7 +240,7 @@ const App: React.FC = () => {
             </div>
           </div>
         </div>
-        <div id='about' className='Container' data-aos='fade-left'>
+        <div id='about' className='Container' data-aos='fade-up'>
           <div>
             <h1 className='title'>Why Gergen Software</h1>
             <h2 className='text-lg mt-4 text-slate-600'>
@@ -274,7 +272,7 @@ const App: React.FC = () => {
             </h2>
           </div>
         </div>
-        <div id='contact' className='Container mb-16' data-aos='fade-up'>
+        <div id='contact' className='Container mb-16'>
           <h1 className='text-3xl font-bold mb-4'>Contact Us</h1>
           <div className='grid md:grid-cols-2 max-w-4xl mt-8'>
             <div className='flex flex-col gap-4 text-left text-slate-600 leading-relaxed'>
