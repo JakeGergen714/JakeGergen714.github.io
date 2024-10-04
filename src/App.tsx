@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react';
-import Header from './components/Header';
+import LogoWithText from './assets/logo.png';
+import NoTextLogo from './assets/logo-no-text.png';
+
 import { CgWebsite } from 'react-icons/cg';
 import { ImMobile } from 'react-icons/im';
 import { GiPlatform } from 'react-icons/gi';
@@ -89,11 +91,55 @@ const App: React.FC = () => {
 
   return (
     <div className='flex flex-col min-h-screen max-w-7xl mx-auto px-4 font-custom'>
-      <Header />
-      <main className='flex-auto pt-24 text-left'>
+      <header className='top-0 w-full'>
+        <div className=' max-w-7xl mx-auto px-4 flex items-center justify-between h-16'>
+          <div className='logo flex items-center'>
+            <a href='/'>
+              <img
+                src={LogoWithText}
+                alt='Astronaut Illustration'
+                className='max-h-16 object-contain'
+              />
+            </a>
+          </div>
+
+          {/* Navigation */}
+          <nav className='navbar hidden lg:flex'>
+            <ul className='flex flex-col lg:flex-row lg:gap-8 space-x-6'>
+              <li>
+                <a
+                  href='#services'
+                  className='text-gray-600 hover:text-gray-400'
+                >
+                  Services
+                </a>
+              </li>
+              <li>
+                <a href='#about' className='text-gray-600 hover:text-gray-400'>
+                  About
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href='#pricing'
+                  className='text-gray-600 hover:text-gray-400'
+                >
+                  Pricing
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <div className='logo flex items-center'>
+            <a href='#contact'>Contact Us</a>
+          </div>
+        </div>
+      </header>
+      <main className='flex-auto text-left'>
         {' '}
         {/* Increased padding-top and set text-left */}
-        <div className='pt-16 flex justify-start gap-x-1'>
+        <div className='grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24'>
           <div>
             <h1 className=' text-black text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter'>
               Gergen Software Contracting
@@ -105,6 +151,11 @@ const App: React.FC = () => {
               tailored solutions to meet your unique business needs.
             </p>
           </div>
+          <img
+            src={NoTextLogo}
+            alt='Astronaut Illustration'
+            className='h-full w-2/3 object-contain hidden lg:flex'
+          />
         </div>
         <div id='services' className='Container'>
           <div>
@@ -176,14 +227,14 @@ const App: React.FC = () => {
         </div>
         <div id='about' className='Container'>
           <div>
-            <h1 className='title'>Why G.S.C</h1>
+            <h1 className='title'>Why Gergen Software</h1>
             <h2 className='text-lg mt-4 text-slate-600'>
-              We add a personal touch to our development process that seperates
-              us from everyone else. We want to get to know you, your business,
-              employees and your customers to build the perfect tools just for
-              you and your business. We are passionate about what we do and
-              specialize in using the latest and greatest tools to deliver the
-              best possible products for our customers!
+              Our approach is hands-on and collaborative. We visit your business
+              to experience its unique environment firsthand, ensuring we fully
+              understand your goals. As we develop your solution, we keep you
+              engaged every step of the way, presenting prototypes and gathering
+              your input. This collaborative journey ensures that what we build
+              truly meets your needs and helps your business thrive.
             </h2>
           </div>
         </div>
@@ -210,7 +261,7 @@ const App: React.FC = () => {
           <h1 className='text-3xl font-bold mb-4'>Contact Us</h1>
           <div className='grid md:grid-cols-2 max-w-4xl mt-8'>
             <div className='flex flex-col gap-4 text-left text-slate-600 leading-relaxed'>
-              <p>✉️ info@gergensoftware.com</p>
+              <p>info@gergensoftware.com</p>
               <p className='mb-8'>+1 (123) 456-7890</p>
             </div>
             <form

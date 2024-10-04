@@ -6,7 +6,6 @@ const Header: React.FC = () => {
   return (
     <header className='top-0 w-full'>
       <div className=' max-w-7xl mx-auto px-4 flex items-center justify-between h-16'>
-        {/* Logo */}
         <div className='logo flex items-center'>
           <a href='/'>
             <img
