@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { email, full_name, contact_info, message } = req.body;
+    const { email, full_name, phone, message } = req.body;
 
     // Configure the transporter with your email provider details
     const transporter = nodemailer.createTransport({
@@ -21,7 +21,7 @@ export default async function handler(req, res) {
         from: process.env.SMTP_USER, // Sender address
         to: email || process.env.DEFAULT_RECIPIENT_EMAIL, // Receiver's email address
         subject: 'New Message from Your Website Contact Form',
-        text: `Hello,\n\nYou have received a new message from your website contact form.\n\nFull Name: ${full_name}\nContact Info: ${contact_info}\n\nMessage:\n${message}\n\nBest regards,\nYour Website Team`,
+        text: `Hello,\n\nYou have received a new message from your website contact form.\n\nFull Name: ${full_name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}\n\nBest regards,\nYour Website Team`,
       });
 
       res.status(200).json({ message: 'Email sent successfully' });
