@@ -10,18 +10,16 @@ import { GrHost } from 'react-icons/gr';
 const App: React.FC = () => {
   const form = useRef<HTMLFormElement>(null);
   const [phone, setPhone] = useState('');
-
-  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const formatPhoneNumber = (input: string) => {
     const cleaned = ('' + input).replace(/\D/g, '');
 
-    // Check if the input is empty
     if (cleaned.length === 0) {
       return '';
     }
 
-    // Format the input
     const areaCode = cleaned.slice(0, 3);
     const middlePart = cleaned.slice(3, 6);
     const lastPart = cleaned.slice(6, 10);
@@ -50,14 +48,15 @@ const App: React.FC = () => {
     e.preventDefault();
 
     if (form.current) {
+      setLoading(true); // Set loading to true when starting the request
+      setIsSuccess(false); // Reset success state
+
       const emailData = {
         full_name: form.current.full_name.value,
         email: form.current.email.value,
         phone: form.current.phone.value,
         message: form.current.message.value,
       };
-
-      console.log(emailData);
 
       try {
         const response = await fetch('/api/send-email', {
@@ -74,14 +73,16 @@ const App: React.FC = () => {
 
         console.log('SUCCESS!');
         form.current.reset(); // Reset the form
-        setShowSuccessPopup(true); // Show success popup
+        setIsSuccess(true); // Show success state
 
-        // Hide the popup after 3 seconds
+        // Reset success state after 3 seconds
         setTimeout(() => {
-          setShowSuccessPopup(false);
-        }, 3000);
+          setIsSuccess(false);
+        }, 5000);
       } catch (error) {
         console.log('FAILED...', error);
+      } finally {
+        setLoading(false); // Set loading to false once the request is complete
       }
     }
   };
@@ -212,8 +213,6 @@ const App: React.FC = () => {
               <p>✉️ info@gergensoftware.com</p>
               <p className='mb-8'>+1 (123) 456-7890</p>
             </div>
-            {/* Success Popup */}
-
             <form
               ref={form}
               onSubmit={sendEmail}
@@ -244,16 +243,39 @@ const App: React.FC = () => {
                 placeholder='How can we help?'
                 className='border rounded-md p-2'
               ></textarea>
-              {showSuccessPopup && (
-                <div className='bg-green-500 text-white py-2 px-4 rounded-md shadow-md'>
-                  Message sent successfully!
-                </div>
-              )}
               <button
                 type='submit'
-                className='bg-black text-white p-2 rounded-md'
+                className={`p-2 rounded-md flex justify-center items-center ${
+                  isSuccess ? 'bg-green-500 text-white' : 'bg-black text-white'
+                }`}
+                disabled={loading || isSuccess}
               >
-                Send Message
+                {loading ? (
+                  <svg
+                    className='animate-spin h-5 w-5 mr-3 text-white'
+                    xmlns='http://www.w3.org/2000/svg'
+                    fill='none'
+                    viewBox='0 0 24 24'
+                  >
+                    <circle
+                      className='opacity-25'
+                      cx='12'
+                      cy='12'
+                      r='10'
+                      stroke='currentColor'
+                      strokeWidth='4'
+                    ></circle>
+                    <path
+                      className='opacity-75'
+                      fill='currentColor'
+                      d='M4 12a8 8 0 018-8v8z'
+                    ></path>
+                  </svg>
+                ) : isSuccess ? (
+                  'Message Sent'
+                ) : (
+                  'Send Message'
+                )}
               </button>
             </form>
           </div>
