@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import LogoWithText from './assets/logo.png';
 import NoTextLogo from './assets/logo-no-text.png';
 
@@ -9,7 +9,19 @@ import { MdConveyorBelt } from 'react-icons/md';
 import { SiSpringsecurity } from 'react-icons/si';
 import { GrHost } from 'react-icons/gr';
 
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Import AOS styles
+
 const App: React.FC = () => {
+  // AOS initialization
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Animation duration in milliseconds
+      easing: 'ease-in-out', // Easing option for the animations
+      once: true, // Whether the animation should happen only once
+    });
+  }, []);
+
   const form = useRef<HTMLFormElement>(null);
   const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(false);
@@ -139,9 +151,12 @@ const App: React.FC = () => {
       <main className='flex-auto text-left'>
         {' '}
         {/* Increased padding-top and set text-left */}
-        <div className='grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24'>
+        <div
+          className='grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24'
+          data-aos='fade-up'
+        >
           <div>
-            <h1 className='text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter'>
+            <h1 className=' text-black text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter'>
               Gergen Software Contracting
             </h1>
             <p className='text-lg mt-4 text-slate-600 max-w-xl'>
@@ -154,14 +169,14 @@ const App: React.FC = () => {
           <img
             src={NoTextLogo}
             alt='Astronaut Illustration'
-            className='h-full w-2/3 object-contain hidden lg:flex'
+            className='h-full w-2/3 object-contain'
           />
         </div>
-        <div id='services' className='Container'>
+        <div id='services' className='Container' data-aos='fade-up'>
           <div>
             <h1 className='title'>Anything you need to grow your business</h1>
             <div className='grid sm:grid-cols-2 md:grid-cols-3 mt-8 gap-16'>
-              <div className='flex flex-col items-start'>
+              <div className='flex flex-col items-start' data-aos='fade-right'>
                 <div className='service-card'>
                   <CgWebsite className='service-icon text-2xl mr-2' />
                   <div className='service-title'>Custom Website Creations</div>
@@ -170,7 +185,7 @@ const App: React.FC = () => {
                   Beautifully crafted websites tailored to your business needs.
                 </p>
               </div>
-              <div className='flex flex-col items-start'>
+              <div className='flex flex-col items-start' data-aos='fade-up'>
                 <div className='service-card'>
                   <ImMobile className='service-icon text-2xl mr-2' />
                   <div className='service-title'>Mobile App Solutions</div>
@@ -180,7 +195,7 @@ const App: React.FC = () => {
                   go.
                 </p>
               </div>
-              <div className='flex flex-col items-start'>
+              <div className='flex flex-col items-start' data-aos='fade-left'>
                 <div className='service-card'>
                   <GiPlatform className='service-icon text-2xl mr-2' />
                   <div className='service-title'>
@@ -191,7 +206,7 @@ const App: React.FC = () => {
                   Integrated platforms that streamline your business operations.
                 </p>
               </div>
-              <div className='flex flex-col items-start'>
+              <div className='flex flex-col items-start' data-aos='fade-up'>
                 <div className='service-card'>
                   <MdConveyorBelt className='service-icon text-2xl mr-2' />
                   <div className='service-title'>
@@ -202,7 +217,7 @@ const App: React.FC = () => {
                   Tools to automate and enhance your daily workflow efficiently.
                 </p>
               </div>
-              <div className='flex flex-col items-start'>
+              <div className='flex flex-col items-start' data-aos='fade-up'>
                 <div className='service-card'>
                   <SiSpringsecurity className='service-icon text-2xl mr-2' />
                   <div className='service-title'>Security Enhancements</div>
@@ -211,7 +226,7 @@ const App: React.FC = () => {
                   Advanced security solutions to protect your digital assets.
                 </p>
               </div>
-              <div className='flex flex-col items-start'>
+              <div className='flex flex-col items-start' data-aos='fade-up'>
                 <div className='service-card'>
                   <GrHost className='service-icon text-2xl mr-2' />
                   <div className='service-title'>
@@ -225,7 +240,7 @@ const App: React.FC = () => {
             </div>
           </div>
         </div>
-        <div id='about' className='Container'>
+        <div id='about' className='Container' data-aos='fade-left'>
           <div>
             <h1 className='title'>Why Gergen Software</h1>
             <h2 className='text-lg mt-4 text-slate-600'>
@@ -238,7 +253,7 @@ const App: React.FC = () => {
             </h2>
           </div>
         </div>
-        <div id='pricing' className='Container'>
+        <div id='pricing' className='Container' data-aos='fade-right'>
           <div>
             <h1 className='title'>Pricing</h1>
             <h2 className='text-lg mt-4 text-slate-600'>
@@ -257,7 +272,7 @@ const App: React.FC = () => {
             </h2>
           </div>
         </div>
-        <div id='contact' className='Container mb-16'>
+        <div id='contact' className='Container mb-16' data-aos='fade-up'>
           <h1 className='text-3xl font-bold mb-4'>Contact Us</h1>
           <div className='grid md:grid-cols-2 max-w-4xl mt-8'>
             <div className='flex flex-col gap-4 text-left text-slate-600 leading-relaxed'>
