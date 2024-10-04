@@ -2,13 +2,19 @@ import emailjs from 'emailjs-com';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { email, full_name, message } = req.body;
+    console.log(req.body);
+    const { email, phone, full_name, message } = req.body;
 
     try {
       const response = await emailjs.send(
         process.env.EMAILJS_SERVICE_ID,
         process.env.EMAILJS_TEMPLATE_ID,
-        { user_email: email, user_name: full_name, user_message: message },
+        {
+          user_email: email,
+          user_phone: phone,
+          user_name: full_name,
+          user_message: message,
+        },
         process.env.EMAILJS_PRIVATE_KEY
       );
 

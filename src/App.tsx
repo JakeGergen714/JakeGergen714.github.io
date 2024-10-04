@@ -9,7 +9,42 @@ import { GrHost } from 'react-icons/gr';
 
 const App: React.FC = () => {
   const form = useRef<HTMLFormElement>(null);
+  const [phone, setPhone] = useState('');
+
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
+  const formatPhoneNumber = (input: string) => {
+    const cleaned = ('' + input).replace(/\D/g, '');
+
+    // Check if the input is empty
+    if (cleaned.length === 0) {
+      return '';
+    }
+
+    // Format the input
+    const areaCode = cleaned.slice(0, 3);
+    const middlePart = cleaned.slice(3, 6);
+    const lastPart = cleaned.slice(6, 10);
+
+    let phoneNumber = '';
+
+    if (areaCode) {
+      phoneNumber += `(${areaCode}`;
+    }
+    if (areaCode.length === 3 && middlePart) {
+      phoneNumber += `) ${middlePart}`;
+    }
+    if (middlePart.length === 3 && lastPart) {
+      phoneNumber += `-${lastPart}`;
+    }
+
+    return phoneNumber;
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formatted = formatPhoneNumber(e.target.value);
+    setPhone(formatted);
+  };
 
   const sendEmail = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,9 +52,12 @@ const App: React.FC = () => {
     if (form.current) {
       const emailData = {
         full_name: form.current.full_name.value,
-        contact_info: form.current.contact_info.value,
+        email: form.current.email.value,
+        phone: form.current.phone.value,
         message: form.current.message.value,
       };
+
+      console.log(emailData);
 
       try {
         const response = await fetch('/api/send-email', {
@@ -188,9 +226,17 @@ const App: React.FC = () => {
                 className='border rounded-md p-2'
               />
               <input
+                type='text'
+                name='phone'
+                value={phone}
+                onChange={handlePhoneChange}
+                placeholder='Enter phone number'
+                className='border rounded-md p-2'
+              />
+              <input
                 type='email'
-                name='contact_info'
-                placeholder='Email Address or Phone Number'
+                name='email'
+                placeholder='Email Address'
                 className='border rounded-md p-2'
               />
               <textarea
