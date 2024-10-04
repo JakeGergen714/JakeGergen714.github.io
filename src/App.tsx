@@ -156,7 +156,7 @@ const App: React.FC = () => {
           data-aos='fade-up'
         >
           <div>
-            <h1 className=' text-black text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter'>
+            <h1 className='text-black text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter dark:text-white'>
               Gergen Software Contracting
             </h1>
             <p className='text-lg mt-4 text-slate-600 max-w-xl'>
@@ -169,7 +169,7 @@ const App: React.FC = () => {
           <img
             src={NoTextLogo}
             alt='Astronaut Illustration'
-            className='h-full w-2/3 object-contain'
+            className='h-full w-2/3 object-contain hidden lg:flex'
           />
         </div>
         <div id='services' className='Container' data-aos='fade-up'>
