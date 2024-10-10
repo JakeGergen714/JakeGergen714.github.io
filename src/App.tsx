@@ -151,15 +151,18 @@ const App: React.FC = () => {
       <main className='flex-auto text-left'>
         {' '}
         {/* Increased padding-top and set text-left */}
-        <div
-          className='grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24'
-          data-aos='fade-up'
-        >
+        <div className='grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24'>
           <div>
-            <h1 className='text-black text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter dark:text-white'>
+            <h1
+              className='text-black text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter dark:text-white'
+              data-aos='fade-up'
+            >
               Gergen Software Contracting
             </h1>
-            <p className='text-lg mt-4 text-slate-600 max-w-xl'>
+            <p
+              className='text-lg mt-4 text-slate-600 max-w-xl'
+              data-aos='fade-up'
+            >
               Your all-in-one software solutions partner, dedicated to
               empowering your business with innovative technology. From custom
               website development to seamless mobile applications, we craft
