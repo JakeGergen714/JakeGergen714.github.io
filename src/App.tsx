@@ -172,11 +172,13 @@ const App: React.FC = () => {
             className='h-full w-2/3 object-contain hidden lg:flex'
           />
         </div>
-        <div id='services' className='Container' data-aos='fade-right'>
+        <div id='services' className='Container'>
           <div>
-            <h1 className='title'>Anything you need to grow your business</h1>
+            <h1 className='title' data-aos='fade-right'>
+              Anything you need to grow your business
+            </h1>
             <div className='grid sm:grid-cols-2 md:grid-cols-3 mt-8 gap-16'>
-              <div className='flex flex-col items-start'>
+              <div className='flex flex-col items-start' data-aos='fade-right'>
                 <div className='service-card'>
                   <CgWebsite className='service-icon text-2xl mr-2' />
                   <div className='service-title'>Custom Website Creations</div>
@@ -240,7 +242,7 @@ const App: React.FC = () => {
             </div>
           </div>
         </div>
-        <div id='about' className='Container' data-aos='fade-up'>
+        <div id='about' className='Container' data-aos='fade-left'>
           <div>
             <h1 className='title'>Why Gergen Software</h1>
             <h2 className='text-lg mt-4 text-slate-600'>
