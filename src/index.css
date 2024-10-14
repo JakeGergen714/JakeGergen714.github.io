@@ -46,13 +46,164 @@ html {
   scroll-behavior: smooth;
 }
 
+@property --color1 {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #0A1F47;
+  /* Dark purple */
+}
+
+@property --color2 {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #4B006E;
+  /* Rich purple */
+}
+
+@property --color3 {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #120824;
+  /* Dark blue */
+}
+
+/* Define custom properties for the gradient position */
+@property --pos-x {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: -10%;
+}
+
+@property --pos-y {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 5%;
+}
+
+/* Styling the body with gradient */
 body {
+  --color1: #0A1F47;
+  /* Dark purple */
+  --color2: #4B006E;
+  /* Rich purple */
+  --color3: #120824;
+  /* Dark blue */
+
+  background: radial-gradient(circle at var(--pos-x) var(--pos-y),
+      var(--color1) -10%,
+      /* Dark purple */
+      var(--color2) 50%,
+      /* Rich purple */
+      var(--color3) 70%,
+      /* Dark blue */
+      #120824 75%);
+  /* Black background */
+  background-size: cover;
+  height: 100vh;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  position: relative
+
+  /* Animate the colors over time and position with linear movement */
+  animation: move-gradient 2s infinite linear alternate;
+}
+
+/* Define the color-shift animation */
+@keyframes color-shift {
+  0% {
+    --color1: #3B1C49;
+    /* Dark purple */
+    --color2: #4B006E;
+    /* Rich purple */
+    --color3: #120824;
+    /* Dark blue */
+  }
+
+  50% {
+    --color1: #120824;
+    /* Dark blue */
+    --color2: #3B1C49;
+    /* Dark purple */
+    --color3: #4B006E;
+    /* Rich purple */
+  }
+
+  100% {
+    --color1: #3B1C49;
+    /* Dark purple */
+    --color2: #4B006E;
+    /* Rich purple */
+    --color3: #120824;
+    /* Dark blue */
+  }
+}
+
+/* Define the movement animation for the gradient */
+@keyframes move-gradient {
+0% {
+    --pos-x: -10%;
+    --pos-y: -10%;
+    /* Reduced by another 10% */
+  }
+
+  10% {
+    --pos-x: -8%;
+    --pos-y: -8%;
+    /* Reduced by another 10% */
+  }
+
+  20% {
+    --pos-x: -6%;
+    --pos-y: -6%;
+    /* Reduced by another 10% */
+  }
+
+  30% {
+    --pos-x: -4%;
+    --pos-y: -4%;
+    /* Reduced by another 10% */
+  }
+
+  40% {
+    --pos-x: -2%;
+    --pos-y: -2%;
+    /* Reduced by another 10% */
+  }
+
+  50% {
+    --pos-x: 0%;
+    --pos-y: 0%;
+    /* Reduced by another 10% */
+  }
+
+  60% {
+    --pos-x: 2%;
+    --pos-y: 2%;
+    /* Reduced by another 10% */
+  }
+
+  70% {
+    --pos-x: 4%;
+    --pos-y: 4%;
+    /* Reduced by another 10% */
+  }
+
+  80% {
+    --pos-x: 6%;
+    --pos-y: 6%;
+    /* Reduced by another 10% */
+  }
+
+  90% {
+    --pos-x: 8%;
+    --pos-y: 8%;
+    /* Reduced by another 10% */
+  }
+
+  100% {
+    --pos-x: 10%;
+    --pos-y: 10%;
+    /* Reduced by another 10% */
+  }
+  
 }
 
 h1 {
@@ -67,7 +218,6 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -86,7 +236,7 @@ button:focus-visible {
 }
 
 .title {
-  @apply font-bold text-2xl lg:text-4xl xl:text-4xl text-left flex-grow text-black dark:text-white;
+  @apply font-bold text-2xl lg:text-4xl xl:text-4xl text-left flex-grow text-slate-300 dark:text-white;
 }
 
 .service-card {
@@ -94,11 +244,11 @@ button:focus-visible {
 }
 
 .service-title {
-  @apply font-bold text-left text-lg;
+  @apply font-bold text-left text-lg text-slate-300;
 }
 
 .service-icon {
-  @apply font-bold text-4xl lg:text-4xl xl:text-4xl text-right flex-grow;
+  @apply text-slate-300 font-bold text-4xl lg:text-4xl xl:text-4xl text-right flex-grow;
 }
 
 .service-description {

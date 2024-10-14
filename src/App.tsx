@@ -13,19 +13,19 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
 
 const App: React.FC = () => {
+  const form = useRef<HTMLFormElement>(null);
+  const [phone, setPhone] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   // AOS initialization
   useEffect(() => {
+    // Function to create stars
     AOS.init({
       duration: 1000, // Animation duration in milliseconds
       easing: 'ease-in-out', // Easing option for the animations
       once: true, // Whether the animation should happen only once
     });
   }, []);
-
-  const form = useRef<HTMLFormElement>(null);
-  const [phone, setPhone] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
 
   const formatPhoneNumber = (input: string) => {
     const cleaned = ('' + input).replace(/\D/g, '');
@@ -104,7 +104,7 @@ const App: React.FC = () => {
   return (
     <div className='flex flex-col min-h-screen max-w-7xl mx-auto px-4 font-custom'>
       <header className='top-0 w-full'>
-        <div className=' max-w-7xl mx-auto px-4 flex items-center justify-between h-16'>
+        <div className=' max-w-7xl mx-auto px-4 flex items-center justify-between h-16 '>
           <div className='logo flex items-center'>
             <a href='/'>
               <img
@@ -116,18 +116,18 @@ const App: React.FC = () => {
           </div>
 
           {/* Navigation */}
-          <nav className='navbar hidden lg:flex'>
+          <nav className='navbar hidden lg:flex '>
             <ul className='flex flex-col lg:flex-row lg:gap-8 space-x-6'>
               <li>
                 <a
                   href='#services'
-                  className='text-gray-600 hover:text-gray-400'
+                  className='text-gray-200 hover:text-gray-400'
                 >
                   Services
                 </a>
               </li>
               <li>
-                <a href='#about' className='text-gray-600 hover:text-gray-400'>
+                <a href='#about' className='text-gray-200 hover:text-gray-400'>
                   About
                 </a>
               </li>
@@ -135,7 +135,7 @@ const App: React.FC = () => {
               <li>
                 <a
                   href='#pricing'
-                  className='text-gray-600 hover:text-gray-400'
+                  className='text-gray-200 hover:text-gray-400'
                 >
                   Pricing
                 </a>
@@ -151,12 +151,12 @@ const App: React.FC = () => {
       <main className='flex-auto text-left'>
         {' '}
         {/* Increased padding-top and set text-left */}
-        <div className='grid lg:grid-cols-2 place-items-center'>
+        <div className='grid lg:grid-cols-2 place-items-center pt-16'>
           <div data-aos='fade-right'>
-            <h1 className='text-black text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter dark:text-white'>
+            <h1 className='text-slate-300 text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter dark:text-white'>
               Gergen Software Contracting
             </h1>
-            <p className='text-lg mt-4 text-slate-600 max-w-xl'>
+            <p className='text-lg mt-4 text-slate-400 max-w-xl'>
               Your all-in-one software solutions partner, dedicated to
               empowering your business with innovative technology. From custom
               website development to seamless mobile applications, we craft
@@ -243,7 +243,7 @@ const App: React.FC = () => {
         <div id='about' className='Container' data-aos='fade-left'>
           <div>
             <h1 className='title'>Why Gergen Software</h1>
-            <h2 className='text-lg mt-4 text-slate-600'>
+            <h2 className='text-lg mt-4 text-slate-500'>
               Our approach is hands-on and collaborative. We visit your business
               to experience its unique environment firsthand, ensuring we fully
               understand your goals. As we develop your solution, we keep you
@@ -256,7 +256,7 @@ const App: React.FC = () => {
         <div id='pricing' className='Container' data-aos='fade-right'>
           <div>
             <h1 className='title'>Pricing</h1>
-            <h2 className='text-lg mt-4 text-slate-600'>
+            <h2 className='text-lg mt-4 text-slate-500'>
               At Gergen Software Contracting, we believe in transparency and
               integrity when it comes to pricing. That's why we offer
               straightforward price guarantees: the quote we provide is the
@@ -273,9 +273,9 @@ const App: React.FC = () => {
           </div>
         </div>
         <div id='contact' className='Container mb-16'>
-          <h1 className='text-3xl font-bold mb-4'>Contact Us</h1>
+          <h1 className='text-3xl font-bold mb-4 text-slate-300'>Contact Us</h1>
           <div className='grid md:grid-cols-2 max-w-4xl mt-8'>
-            <div className='flex flex-col gap-4 text-left text-slate-600 leading-relaxed'>
+            <div className='flex flex-col gap-4 text-left text-slate-300 leading-relaxed'>
               <p>info@gergensoftware.com</p>
               <p className='mb-8'>+1 (571) 382-0818</p>
             </div>
@@ -312,7 +312,9 @@ const App: React.FC = () => {
               <button
                 type='submit'
                 className={`p-2 rounded-md flex justify-center items-center ${
-                  isSuccess ? 'bg-green-500 text-white' : 'bg-black text-white'
+                  isSuccess
+                    ? 'bg-green-500 text-white'
+                    : 'bg-purple-950 text-white'
                 }`}
                 disabled={loading || isSuccess}
               >
