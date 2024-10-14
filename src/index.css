@@ -133,19 +133,26 @@ body {
 
   /* Animate both gradients */
   animation: radius-change 5s infinite linear alternate,
-    color-change 7s infinite linear, move-gradient 10s infinite linear alternate;
+    color-change 15s infinite linear,
+    move-gradient 10s infinite linear alternate;
 }
 
 /* Keyframes for color change between color1 and color1-comp */
 @keyframes color-change {
   0% {
-    --color1: #0a1f47;
-  }
-  50% {
     --color1: #f3a953;
   }
-  100% {
+  25% {
+    --color1: #c67b4d;
+  }
+  50% {
     --color1: #0a1f47;
+  }
+  75% {
+    --color1: #c67b4d;
+  }
+  100% {
+    --color1: #f3a953;
   }
 }
 
@@ -184,7 +191,6 @@ body {
 
 /* Keyframes for the first gradient movement */
 @keyframes move-gradient {
-  /* Linger at the start */
   0% {
     --pos-x: -10%;
     --pos-y: 0%;
@@ -205,7 +211,6 @@ body {
     --pos-y: 20%;
   }
 
-  /* Linger in the middle */
   40% {
     --pos-x: 0%;
     --pos-y: 30%;
@@ -281,6 +286,68 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Container for levitation effect */
+.levitate-container {
+  position: relative;
+  display: inline-block; /* To allow precise positioning of shadow and image */
+  @apply h-full w-2/3 object-contain hidden lg:flex;
+}
+
+/* Shadow under the levitating object */
+.shadow {
+  position: absolute;
+  bottom: -10px; /* Position the shadow below the image */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.3); /* Initial shadow */
+  border-radius: 50%; /* Make the shadow circular */
+  animation: shadow-levitate 5s ease-in-out infinite;
+  z-index: 10; /* Ensure the shadow is behind the image */
+}
+
+/* Levitation for the image */
+.astronaut {
+  animation: moon-levitate 5s ease-in-out infinite;
+}
+
+/* Levitation keyframes (as before) */
+@keyframes moon-levitate {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px); /* Peak of the levitation */
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Shadow animation keyframes */
+@keyframes shadow-levitate {
+  0% {
+    width: 150px; /* Wider shadow when close to the ground */
+    height: 25px;
+    background: rgba(0, 0, 0, 0.3); /* Darker, larger shadow */
+  }
+
+  50% {
+    width: 80px; /* Smaller shadow when higher up */
+    height: 15px;
+    background: rgba(0, 0, 0, 0.1); /* Lighter, smaller shadow */
+  }
+
+  100% {
+    width: 150px; /* Return to wider shadow as the object returns to the ground */
+    height: 25px;
+    background: rgba(0, 0, 0, 0.3); /* Darker, larger shadow */
+  }
 }
 
 .Container {

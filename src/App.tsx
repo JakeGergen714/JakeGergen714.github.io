@@ -163,12 +163,15 @@ const App: React.FC = () => {
               tailored solutions to meet your unique business needs.
             </p>
           </div>
-          <img
-            src={NoTextLogo}
-            alt='Astronaut Illustration'
-            className='h-full w-2/3 object-contain hidden lg:flex'
-            data-aos='fade-left'
-          />
+
+          <div className='levitate-container'>
+            <div className='shadow z-10 relative'></div>
+            <img
+              src={NoTextLogo}
+              alt='Astronaut Illustration'
+              className='astronaut'
+            />
+          </div>
         </div>
         <div id='services' className='Container'>
           <div>
