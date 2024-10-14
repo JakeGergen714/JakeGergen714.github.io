@@ -133,7 +133,7 @@ body {
 
   /* Animate both gradients */
   animation: move-gradient 10s infinite linear alternate,
-    radius-change 10s infinite linear alternate;
+    radius-change 7s infinite linear alternate;
 }
 
 /* Keyframes for radius change */
@@ -157,13 +157,13 @@ body {
   }
 
   75% {
-    --center-radius: -10%;
+    --center-radius: -15%;
     --inner-radius: 45%;
     --outer-radius: 90%;
   }
 
   100% {
-    --center-radius: -10%;
+    --center-radius: -15%;
     --inner-radius: 50%;
     --outer-radius: 110%;
   }
