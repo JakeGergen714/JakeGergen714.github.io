@@ -151,7 +151,7 @@ const App: React.FC = () => {
       <main className='flex-auto text-left'>
         {' '}
         {/* Increased padding-top and set text-left */}
-        <div className='grid lg:grid-cols-2 place-items-center pb-64 md:pb-64 min-h-screen'>
+        <div className='grid lg:grid-cols-2 place-items-center'>
           <div data-aos='fade-right'>
             <h1 className='text-black text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter dark:text-white'>
               Gergen Software Contracting
