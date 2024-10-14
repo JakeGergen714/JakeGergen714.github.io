@@ -121,7 +121,7 @@ html {
 body {
   background: radial-gradient(
     circle at var(--pos-x) var(--pos-y),
-    var(--color1-comp) var(--center-radius),
+    var(--color1) var(--center-radius),
     var(--color2) var(--inner-radius),
     var(--color3) var(--outer-radius)
   );
@@ -132,8 +132,21 @@ body {
   margin: 0;
 
   /* Animate both gradients */
-  animation: move-gradient 10s infinite linear alternate,
-    radius-change 7s infinite linear alternate;
+  animation: radius-change 5s infinite linear alternate,
+    color-change 7s infinite linear, move-gradient 10s infinite linear alternate;
+}
+
+/* Keyframes for color change between color1 and color1-comp */
+@keyframes color-change {
+  0% {
+    --color1: #0a1f47;
+  }
+  50% {
+    --color1: #f3a953;
+  }
+  100% {
+    --color1: #0a1f47;
+  }
 }
 
 /* Keyframes for radius change */
