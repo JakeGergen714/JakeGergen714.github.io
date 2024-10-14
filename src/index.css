@@ -46,6 +46,7 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Define the colors */
 @property --color1 {
   syntax: '<color>';
   inherits: false;
@@ -67,6 +68,13 @@ html {
   /* Dark blue */
 }
 
+@property --color1-comp {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #F3A953;
+  /* Warm orange */
+}
+
 /* Define custom properties for the gradient position */
 @property --pos-x {
   syntax: '<percentage>';
@@ -80,132 +88,113 @@ html {
   initial-value: 5%;
 }
 
+@property --center-radius {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: -10%;
+}
+
 @property --inner-radius {
   syntax: '<percentage>';
   inherits: false;
   initial-value: 30%;
 }
+
 @property --outer-radius {
   syntax: '<percentage>';
   inherits: false;
   initial-value: 50%;
 }
 
-/* Styling the body with gradient */
+@property --pos-x-inverse {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 100%;
+}
+
+@property --pos-y-inverse {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 100%;
+}
+
+/* Styling the body with both gradients */
 body {
   background: radial-gradient(circle at var(--pos-x) var(--pos-y),
-      var(--color1) -10%,
-      /* Dark purple */
+      var(--color1-comp) var(--center-radius),
       var(--color2) var(--inner-radius),
-      /* Rich purple */
-      var(--color3) var(--outer-radius),
-      /* Dark blue */
-      #120824 75%);
-  /* Black background */
-  background-size: cover;
-  height: 100vh;
+      var(--color3) var(--outer-radius));
+
+  /* Specify different background sizes and positions for each gradient */
+/* Adjust sizes so both gradients are visible */
+  background-size:cover;
   margin: 0;
 
-  /* Animate the colors over time and position with linear movement */
-  animation: move-gradient 5s infinite linear alternate, radius-change 3s infinite linear alternate;
+  /* Animate both gradients */
+  animation: radius-change 3s infinite linear alternate;
 }
 
+/* Keyframes for radius change */
 @keyframes radius-change {
   0% {
-      --inner-radius: 30%;
-      --outer-radius: 50%;
-    }
-  
-    25% {
-      --inner-radius: 32%;
-      --outer-radius: 60%;
-    }
-  
-    50% {
-      --inner-radius: 34%;
-      --outer-radius: 70%;
-    }
-  
-    75% {
-      --inner-radius: 36%;
-      --outer-radius: 80%;
-    }
-  
-    100% {
-      --inner-radius: 38%;
-      --outer-radius: 90%;
-    }
-}
-
-/* Define the movement animation for the gradient */
-@keyframes move-gradient {
-0% {
-    --pos-x: -10%;
-    --pos-y: -10%;
-    /* Reduced by another 10% */
+    --center-radius: -10%;
+    --inner-radius: 30%;
+    --outer-radius: 50%;
   }
 
-  10% {
-    --pos-x: -8%;
-    --pos-y: -8%;
-    /* Reduced by another 10% */
-  }
-
-  20% {
-    --pos-x: -6%;
-    --pos-y: -6%;
-    /* Reduced by another 10% */
-  }
-
-  30% {
-    --pos-x: -4%;
-    --pos-y: -4%;
-    /* Reduced by another 10% */
-  }
-
-  40% {
-    --pos-x: -2%;
-    --pos-y: -2%;
-    /* Reduced by another 10% */
+  25% {
+    --center-radius: -10%;
+    --inner-radius: 32%;
+    --outer-radius: 60%;
   }
 
   50% {
-    --pos-x: 0%;
-    --pos-y: 0%;
-    /* Reduced by another 10% */
+    --center-radius: -10%;
+    --inner-radius: 34%;
+    --outer-radius: 70%;
   }
 
-  60% {
-    --pos-x: 2%;
-    --pos-y: 2%;
-    /* Reduced by another 10% */
-  }
-
-  70% {
-    --pos-x: 4%;
-    --pos-y: 4%;
-    /* Reduced by another 10% */
-  }
-
-  80% {
-    --pos-x: 6%;
-    --pos-y: 6%;
-    /* Reduced by another 10% */
-  }
-
-  90% {
-    --pos-x: 8%;
-    --pos-y: 8%;
-    /* Reduced by another 10% */
+  75% {
+    --center-radius: -10%;
+    --inner-radius: 36%;
+    --outer-radius: 80%;
   }
 
   100% {
-    --pos-x: 10%;
-    --pos-y: 10%;
-    /* Reduced by another 10% */
+    --center-radius: -10%;
+    --inner-radius: 38%;
+    --outer-radius: 90%;
   }
-  
 }
+
+/* Keyframes for the first gradient movement */
+@keyframes move-gradient {
+  0% {
+    --pos-x: -10%;
+    --pos-y: -10%;
+  }
+
+  25% {
+    --pos-x: -5%;
+    --pos-y: 10%;
+  }
+
+50% {
+    --pos-x: 0%;
+    --pos-y: 20%;
+  }
+
+  75% {
+    --pos-x: 2%;
+    --pos-y: 25%;
+  }
+
+  100% {
+  --pos-x: 4%;
+  --pos-y: 35%;
+  }
+}
+
 
 h1 {
   font-size: 3.2em;
