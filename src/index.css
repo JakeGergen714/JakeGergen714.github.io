@@ -19,7 +19,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden
+  overflow-x: hidden;
 }
 
 * {
@@ -39,8 +39,7 @@ html,
 body {
   overflow-x: hidden;
   min-height: 100vh;
-    /* Prevent height overflow */
-  
+  /* Prevent height overflow */
 }
 html {
   scroll-behavior: smooth;
@@ -50,14 +49,14 @@ html {
 @property --color1 {
   syntax: '<color>';
   inherits: false;
-  initial-value: #0A1F47;
+  initial-value: #0a1f47;
   /* Dark purple */
 }
 
 @property --color2 {
   syntax: '<color>';
   inherits: false;
-  initial-value: #4B006E;
+  initial-value: #4b006e;
   /* Rich purple */
 }
 
@@ -71,7 +70,7 @@ html {
 @property --color1-comp {
   syntax: '<color>';
   inherits: false;
-  initial-value: #F3A953;
+  initial-value: #f3a953;
   /* Warm orange */
 }
 
@@ -120,18 +119,21 @@ html {
 
 /* Styling the body with both gradients */
 body {
-  background: radial-gradient(circle at var(--pos-x) var(--pos-y),
-      var(--color1-comp) var(--center-radius),
-      var(--color2) var(--inner-radius),
-      var(--color3) var(--outer-radius));
+  background: radial-gradient(
+    circle at var(--pos-x) var(--pos-y),
+    var(--color1-comp) var(--center-radius),
+    var(--color2) var(--inner-radius),
+    var(--color3) var(--outer-radius)
+  );
 
   /* Specify different background sizes and positions for each gradient */
-/* Adjust sizes so both gradients are visible */
-  background-size:cover;
+  /* Adjust sizes so both gradients are visible */
+  background-size: cover;
   margin: 0;
 
   /* Animate both gradients */
-  animation: radius-change 3s infinite linear alternate;
+  animation: move-gradient 10s infinite linear alternate,
+    radius-change 10s infinite linear alternate;
 }
 
 /* Keyframes for radius change */
@@ -139,62 +141,109 @@ body {
   0% {
     --center-radius: -10%;
     --inner-radius: 30%;
-    --outer-radius: 50%;
+    --outer-radius: 60%;
   }
 
   25% {
     --center-radius: -10%;
-    --inner-radius: 32%;
-    --outer-radius: 60%;
+    --inner-radius: 35%;
+    --outer-radius: 70%;
   }
 
   50% {
     --center-radius: -10%;
-    --inner-radius: 34%;
-    --outer-radius: 70%;
+    --inner-radius: 40%;
+    --outer-radius: 80%;
   }
 
   75% {
     --center-radius: -10%;
-    --inner-radius: 36%;
-    --outer-radius: 80%;
+    --inner-radius: 45%;
+    --outer-radius: 90%;
   }
 
   100% {
     --center-radius: -10%;
-    --inner-radius: 38%;
-    --outer-radius: 90%;
+    --inner-radius: 50%;
+    --outer-radius: 110%;
   }
 }
 
 /* Keyframes for the first gradient movement */
 @keyframes move-gradient {
+  /* Linger at the start */
   0% {
     --pos-x: -10%;
-    --pos-y: -10%;
+    --pos-y: 0%;
   }
 
-  25% {
-    --pos-x: -5%;
+  10% {
+    --pos-x: -10%;
+    --pos-y: 5%;
+  }
+
+  20% {
+    --pos-x: -8%;
     --pos-y: 10%;
   }
 
-50% {
-    --pos-x: 0%;
+  30% {
+    --pos-x: -6%;
     --pos-y: 20%;
   }
 
-  75% {
+  /* Linger in the middle */
+  40% {
+    --pos-x: 0%;
+    --pos-y: 30%;
+  }
+
+  50% {
+    --pos-x: 1%;
+    --pos-y: 40%;
+  }
+
+  55% {
     --pos-x: 2%;
-    --pos-y: 25%;
+    --pos-y: 50%;
+  }
+
+  60% {
+    --pos-x: 1%;
+    --pos-y: 55%;
+  }
+
+  65% {
+    --pos-x: 2%;
+    --pos-y: 60%;
+  }
+
+  70% {
+    --pos-x: 0%;
+    --pos-y: 65%;
+  }
+
+  80% {
+    --pos-x: -6%;
+    --pos-y: 75%;
+  }
+
+  90% {
+    --pos-x: -8%;
+    --pos-y: 85%;
+  }
+
+  /* Slow down at the end to smooth the reset */
+  95% {
+    --pos-x: -10%;
+    --pos-y: 95%;
   }
 
   100% {
-  --pos-x: 4%;
-  --pos-y: 35%;
+    --pos-x: -10%;
+    --pos-y: 100%;
   }
 }
-
 
 h1 {
   font-size: 3.2em;
@@ -242,7 +291,7 @@ button:focus-visible {
 }
 
 .service-description {
-  @apply text-slate-500 mt-2 leading-relaxed
+  @apply text-slate-500 mt-2 leading-relaxed;
 }
 
 @media (prefers-color-scheme: light) {
