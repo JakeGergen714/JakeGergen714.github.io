@@ -132,9 +132,9 @@ body {
   margin: 0;
 
   /* Animate both gradients */
-  animation: radius-change 5s infinite linear alternate,
+  animation: radius-change 15s infinite linear alternate,
     color-change 15s infinite linear,
-    move-gradient 10s infinite linear alternate;
+    move-gradient 15s infinite linear alternate;
 }
 
 /* Keyframes for color change between color1 and color1-comp */
@@ -155,31 +155,31 @@ body {
 /* Keyframes for radius change */
 @keyframes radius-change {
   0% {
-    --center-radius: -10%;
+    --center-radius: -55%;
     --inner-radius: 30%;
     --outer-radius: 60%;
   }
 
   25% {
-    --center-radius: -10%;
+    --center-radius: -50%;
     --inner-radius: 35%;
     --outer-radius: 70%;
   }
 
   50% {
-    --center-radius: -10%;
+    --center-radius: -45%;
     --inner-radius: 40%;
     --outer-radius: 80%;
   }
 
   75% {
-    --center-radius: -15%;
+    --center-radius: -40%;
     --inner-radius: 45%;
     --outer-radius: 90%;
   }
 
   100% {
-    --center-radius: -15%;
+    --center-radius: -35%;
     --inner-radius: 50%;
     --outer-radius: 110%;
   }
@@ -188,74 +188,79 @@ body {
 /* Keyframes for the first gradient movement */
 @keyframes move-gradient {
   0% {
-    --pos-x: -10%;
+    --pos-x: -20%;
+    --pos-y: 0%;
+  }
+
+  5% {
+    --pos-x: -20%;
     --pos-y: 0%;
   }
 
   10% {
-    --pos-x: -10%;
-    --pos-y: 5%;
+    --pos-x: -20%;
+    --pos-y: 2%;
   }
 
   20% {
-    --pos-x: -8%;
+    --pos-x: -17%;
     --pos-y: 10%;
   }
 
   30% {
-    --pos-x: -6%;
-    --pos-y: 20%;
+    --pos-x: -11%;
+    --pos-y: 25%;
   }
 
   40% {
-    --pos-x: 0%;
-    --pos-y: 30%;
+    --pos-x: -8%;
+    --pos-y: 35%;
   }
 
   50% {
-    --pos-x: 1%;
-    --pos-y: 40%;
+    --pos-x: -7%;
+    --pos-y: 45%;
   }
 
   55% {
-    --pos-x: 2%;
-    --pos-y: 50%;
-  }
-
-  60% {
-    --pos-x: 1%;
+    --pos-x: -9%;
     --pos-y: 55%;
   }
 
-  65% {
-    --pos-x: 2%;
+  60% {
+    --pos-x: -10%;
     --pos-y: 60%;
   }
 
-  70% {
-    --pos-x: 0%;
+  65% {
+    --pos-x: -12%;
     --pos-y: 65%;
   }
 
-  80% {
-    --pos-x: -6%;
+  70% {
+    --pos-x: -13%;
     --pos-y: 75%;
   }
 
+  80% {
+    --pos-x: -14%;
+    --pos-y: 95%;
+  }
+
   90% {
-    --pos-x: -8%;
-    --pos-y: 85%;
+    --pos-x: -15%;
+    --pos-y: 105%;
   }
 
   /* Slow down at the end to smooth the reset */
   95% {
-    --pos-x: -10%;
-    --pos-y: 95%;
+    --pos-x: -17%;
+    --pos-y: 110%;
   }
 
   100% {
-    --pos-x: -10%;
-    --pos-y: 100%;
+    --pos-x: -17%;
+    --pos-y: 110%;
   }
 }
 
