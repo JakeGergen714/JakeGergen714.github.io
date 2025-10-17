@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
@@ -7,294 +6,65 @@
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light only;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+
+  --bg-darkest: hsl(267, 18%, 6%);
+  --bg-dark: hsl(216, 18%, 10%);
+  --bg-light: rgb(0, 173, 181);
+  --bg-white: rgb(238, 238, 238);
+
+  /* Text Colors */
+  --text-lightest: hsl(0, 0%, 93%);
+  --text-light: hsl(0, 0%, 69%);
+  --text-muted: hsl(0, 0%, 40%);
+
+  /* Default theme (pine emerald) */
+  --accent-300: rgba(110, 231, 183, 1); /* emerald-300 */
+  --accent-300-80: rgba(110, 231, 183, 0.8);
+  --accent-border: rgba(16, 185, 129, 0.4); /* emerald-500/40 */
+  --accent-border-strong: rgba(16, 185, 129, 0.6);
+  --accent-ring: rgba(16, 185, 129, 0.1);
+  --accent-solid: rgb(16, 185, 129); /* emerald-500 */
+  --accent-solid-hover: rgb(52, 211, 153); /* emerald-400 */
+  --glow-spot: rgba(16, 185, 129, 0.18);
+}
+
+.bg-ds-green {
+  background-color: rgb(42 179 152);
+}
+
+.bg-ds-slate {
+  background-color: rgba(110, 93, 197, 0.514);
+}
+
+.bg-ds-slate-light {
+  background-color: rgba(110, 93, 197, 0.514);
+}
+
+.width-controller {
+  @apply max-w-7xl mx-auto px-4;
 }
 
 * {
   box-sizing: border-box;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
+/* Link colors are styled contextually in components via Tailwind */
+/* Restore original global sizing that showed all content (may create dual scrollbars) */
 html,
 body {
   overflow-x: hidden;
   min-height: 100vh;
-  /* Prevent height overflow */
 }
 html {
   scroll-behavior: smooth;
 }
 
-/* Define the colors */
-@property --color1 {
-  syntax: '<color>';
-  inherits: false;
-  initial-value: #0a1f47;
-  /* Dark purple */
-}
-
-@property --color2 {
-  syntax: '<color>';
-  inherits: false;
-  initial-value: #4b006e;
-  /* Rich purple */
-}
-
-@property --color3 {
-  syntax: '<color>';
-  inherits: false;
-  initial-value: #120824;
-  /* Dark blue */
-}
-
-@property --color1-comp {
-  syntax: '<color>';
-  inherits: false;
-  initial-value: #f3a953;
-  /* Warm orange */
-}
-
-/* Define custom properties for the gradient position */
-@property --pos-x {
-  syntax: '<percentage>';
-  inherits: false;
-  initial-value: -10%;
-}
-
-@property --pos-y {
-  syntax: '<percentage>';
-  inherits: false;
-  initial-value: 5%;
-}
-
-@property --center-radius {
-  syntax: '<percentage>';
-  inherits: false;
-  initial-value: -10%;
-}
-
-@property --inner-radius {
-  syntax: '<percentage>';
-  inherits: false;
-  initial-value: 30%;
-}
-
-@property --outer-radius {
-  syntax: '<percentage>';
-  inherits: false;
-  initial-value: 50%;
-}
-
-@property --pos-x-inverse {
-  syntax: '<percentage>';
-  inherits: false;
-  initial-value: 100%;
-}
-
-@property --pos-y-inverse {
-  syntax: '<percentage>';
-  inherits: false;
-  initial-value: 100%;
-}
-
-/* Styling the body with both gradients */
-body {
-  background: radial-gradient(
-    circle at var(--pos-x) var(--pos-y),
-    var(--color1) var(--center-radius),
-    var(--color2) var(--inner-radius),
-    var(--color3) var(--outer-radius)
-  );
-
-  /* Specify different background sizes and positions for each gradient */
-  /* Adjust sizes so both gradients are visible */
-  background-size: cover;
-  margin: 0;
-
-  /* Animate both gradients */
-  animation: radius-change 15s infinite linear alternate,
-    color-change 15s infinite linear,
-    move-gradient 15s infinite linear alternate;
-}
-
-/* Keyframes for color change between color1 and color1-comp */
-@keyframes color-change {
-  0% {
-    --color1: #f3a953;
-  }
-
-  50% {
-    --color1: #c67b4d;
-  }
-
-  100% {
-    --color1: #f3a953;
-  }
-}
-
-/* Keyframes for radius change */
-@keyframes radius-change {
-  0% {
-    --center-radius: -55%;
-    --inner-radius: 30%;
-    --outer-radius: 60%;
-  }
-
-  25% {
-    --center-radius: -50%;
-    --inner-radius: 35%;
-    --outer-radius: 70%;
-  }
-
-  50% {
-    --center-radius: -45%;
-    --inner-radius: 40%;
-    --outer-radius: 80%;
-  }
-
-  75% {
-    --center-radius: -40%;
-    --inner-radius: 45%;
-    --outer-radius: 90%;
-  }
-
-  100% {
-    --center-radius: -35%;
-    --inner-radius: 50%;
-    --outer-radius: 110%;
-  }
-}
-
-/* Keyframes for the first gradient movement */
-@keyframes move-gradient {
-  0% {
-    --pos-x: -20%;
-    --pos-y: 0%;
-  }
-
-  5% {
-    --pos-x: -20%;
-    --pos-y: 0%;
-  }
-
-  10% {
-    --pos-x: -20%;
-    --pos-y: 2%;
-  }
-
-  20% {
-    --pos-x: -17%;
-    --pos-y: 10%;
-  }
-
-  30% {
-    --pos-x: -11%;
-    --pos-y: 25%;
-  }
-
-  40% {
-    --pos-x: -8%;
-    --pos-y: 35%;
-  }
-
-  50% {
-    --pos-x: -7%;
-    --pos-y: 45%;
-  }
-
-  55% {
-    --pos-x: -9%;
-    --pos-y: 55%;
-  }
-
-  60% {
-    --pos-x: -10%;
-    --pos-y: 60%;
-  }
-
-  65% {
-    --pos-x: -12%;
-    --pos-y: 65%;
-  }
-
-  70% {
-    --pos-x: -13%;
-    --pos-y: 75%;
-  }
-
-  80% {
-    --pos-x: -14%;
-    --pos-y: 95%;
-  }
-
-  90% {
-    --pos-x: -15%;
-    --pos-y: 105%;
-  }
-
-  /* Slow down at the end to smooth the reset */
-  95% {
-    --pos-x: -17%;
-    --pos-y: 110%;
-  }
-
-  100% {
-    --pos-x: -17%;
-    --pos-y: 110%;
-  }
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-/* Container for levitation effect */
-.levitate-container {
-  position: relative;
-  display: inline-block; /* To allow precise positioning of shadow and image */
-  @apply h-full w-2/3 object-contain hidden lg:flex;
-}
+/* Avoid global button styles that fight Tailwind utility classes */
 
 /* Shadow under the levitating object */
 .shadow {
@@ -310,53 +80,12 @@ button:focus-visible {
   z-index: 10; /* Ensure the shadow is behind the image */
 }
 
-/* Levitation for the image */
-.astronaut {
-  animation: moon-levitate 5s ease-in-out infinite;
-}
-
-/* Levitation keyframes (as before) */
-@keyframes moon-levitate {
-  0% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-10px); /* Peak of the levitation */
-  }
-
-  100% {
-    transform: translateY(0);
-  }
-}
-
-/* Shadow animation keyframes */
-@keyframes shadow-levitate {
-  0% {
-    width: 150px; /* Wider shadow when close to the ground */
-    height: 25px;
-    background: rgba(0, 0, 0, 0.3); /* Darker, larger shadow */
-  }
-
-  50% {
-    width: 80px; /* Smaller shadow when higher up */
-    height: 15px;
-    background: rgba(0, 0, 0, 0.1); /* Lighter, smaller shadow */
-  }
-
-  100% {
-    width: 150px; /* Return to wider shadow as the object returns to the ground */
-    height: 25px;
-    background: rgba(0, 0, 0, 0.3); /* Darker, larger shadow */
-  }
-}
-
 .Container {
   @apply mt-24;
 }
 
 .title {
-  @apply font-bold text-2xl lg:text-4xl xl:text-4xl text-left flex-grow text-slate-300 dark:text-white;
+  @apply font-light text-5xl lg:text-4xl xl:text-5xl flex-grow;
 }
 
 .service-card {
@@ -364,15 +93,15 @@ button:focus-visible {
 }
 
 .service-title {
-  @apply font-bold text-left text-lg text-slate-300;
+  @apply font-bold text-left text-3xl text-slate-300;
 }
 
 .service-icon {
-  @apply text-slate-300 font-bold text-4xl lg:text-4xl xl:text-4xl text-right flex-grow;
+  @apply font-bold text-4xl lg:text-4xl xl:text-4xl text-right flex-grow;
 }
 
 .service-description {
-  @apply text-slate-500 mt-2 leading-relaxed;
+  @apply text-slate-400 mt-2 leading-relaxed text-left;
 }
 
 @media (prefers-color-scheme: light) {
@@ -384,14 +113,211 @@ button:focus-visible {
   a:hover {
     color: #747bff;
   }
-
-  button {
-    background-color: #f9f9f9;
-  }
 }
 
 @media (max-width: 768px) {
   .your-element {
     max-width: 100%;
   }
+}
+
+/* THEME VARIANTS */
+/* Pine theme uses defaults; no overrides needed */
+
+[data-theme='royal'] {
+  --bg-darkest: hsl(252, 22%, 7%);
+  --bg-dark: hsl(245, 18%, 12%);
+  --accent-300: rgba(167, 139, 250, 1); /* violet-400 */
+  --accent-300-80: rgba(167, 139, 250, 0.8);
+  --accent-border: rgba(99, 102, 241, 0.4); /* indigo-500 */
+  --accent-border-strong: rgba(99, 102, 241, 0.6);
+  --accent-ring: rgba(99, 102, 241, 0.12);
+  --accent-solid: rgb(99, 102, 241);
+  --accent-solid-hover: rgb(129, 140, 248);
+  --glow-spot: rgba(99, 102, 241, 0.18);
+}
+
+[data-theme='sunset'] {
+  --bg-darkest: hsl(18, 25%, 8%);
+  --bg-dark: hsl(22, 20%, 12%);
+  --accent-300: rgba(251, 146, 60, 1); /* orange-400 */
+  --accent-300-80: rgba(251, 146, 60, 0.85);
+  --accent-border: rgba(249, 115, 22, 0.45); /* orange-500 */
+  --accent-border-strong: rgba(249, 115, 22, 0.65);
+  --accent-ring: rgba(249, 115, 22, 0.12);
+  --accent-solid: rgb(249, 115, 22);
+  --accent-solid-hover: rgb(251, 146, 60);
+  --glow-spot: rgba(249, 115, 22, 0.16);
+}
+
+[data-theme='ocean'] {
+  --bg-darkest: hsl(202, 30%, 8%);
+  --bg-dark: hsl(205, 24%, 12%);
+  --accent-300: rgba(103, 232, 249, 1); /* cyan-300 */
+  --accent-300-80: rgba(103, 232, 249, 0.8);
+  --accent-border: rgba(6, 182, 212, 0.45); /* cyan-500 */
+  --accent-border-strong: rgba(6, 182, 212, 0.65);
+  --accent-ring: rgba(6, 182, 212, 0.12);
+  --accent-solid: rgb(6, 182, 212);
+  --accent-solid-hover: rgb(34, 211, 238);
+  --glow-spot: rgba(6, 182, 212, 0.18);
+}
+
+/* Additional themes */
+[data-theme='forest'] {
+  --bg-darkest: hsl(150, 25%, 7%);
+  --bg-dark: hsl(155, 20%, 12%);
+  --accent-300: rgba(134, 239, 172, 1); /* green-300 */
+  --accent-300-80: rgba(134, 239, 172, 0.8);
+  --accent-border: rgba(34, 197, 94, 0.45); /* green-500 */
+  --accent-border-strong: rgba(34, 197, 94, 0.65);
+  --accent-ring: rgba(34, 197, 94, 0.12);
+  --accent-solid: rgb(34, 197, 94);
+  --accent-solid-hover: rgb(74, 222, 128);
+  --glow-spot: rgba(34, 197, 94, 0.18);
+}
+
+[data-theme='copper'] {
+  --bg-darkest: hsl(20, 28%, 7%);
+  --bg-dark: hsl(24, 22%, 12%);
+  --accent-300: rgba(252, 211, 77, 1); /* amber-300 */
+  --accent-300-80: rgba(252, 211, 77, 0.85);
+  --accent-border: rgba(217, 119, 6, 0.5); /* amber-600 */
+  --accent-border-strong: rgba(217, 119, 6, 0.7);
+  --accent-ring: rgba(217, 119, 6, 0.14);
+  --accent-solid: rgb(217, 119, 6);
+  --accent-solid-hover: rgb(245, 158, 11);
+  --glow-spot: rgba(217, 119, 6, 0.18);
+}
+
+[data-theme='rose'] {
+  --bg-darkest: hsl(340, 22%, 7%);
+  --bg-dark: hsl(345, 22%, 12%);
+  --accent-300: rgba(253, 164, 175, 1); /* rose-300 */
+  --accent-300-80: rgba(253, 164, 175, 0.8);
+  --accent-border: rgba(244, 63, 94, 0.5); /* rose-500 */
+  --accent-border-strong: rgba(244, 63, 94, 0.7);
+  --accent-ring: rgba(244, 63, 94, 0.12);
+  --accent-solid: rgb(244, 63, 94);
+  --accent-solid-hover: rgb(251, 113, 133);
+  --glow-spot: rgba(244, 63, 94, 0.18);
+}
+
+[data-theme='fuchsia'] {
+  --bg-darkest: hsl(290, 22%, 7%);
+  --bg-dark: hsl(292, 22%, 12%);
+  --accent-300: rgba(240, 171, 252, 1); /* fuchsia-300 */
+  --accent-300-80: rgba(240, 171, 252, 0.85);
+  --accent-border: rgba(217, 70, 239, 0.5); /* fuchsia-500 */
+  --accent-border-strong: rgba(217, 70, 239, 0.7);
+  --accent-ring: rgba(217, 70, 239, 0.12);
+  --accent-solid: rgb(217, 70, 239);
+  --accent-solid-hover: rgb(232, 121, 249);
+  --glow-spot: rgba(217, 70, 239, 0.18);
+}
+
+[data-theme='sky'] {
+  --bg-darkest: hsl(210, 30%, 8%);
+  --bg-dark: hsl(212, 24%, 12%);
+  --accent-300: rgba(125, 211, 252, 1); /* sky-300 */
+  --accent-300-80: rgba(125, 211, 252, 0.85);
+  --accent-border: rgba(14, 165, 233, 0.5); /* sky-500 */
+  --accent-border-strong: rgba(14, 165, 233, 0.7);
+  --accent-ring: rgba(14, 165, 233, 0.12);
+  --accent-solid: rgb(14, 165, 233);
+  --accent-solid-hover: rgb(56, 189, 248);
+  --glow-spot: rgba(14, 165, 233, 0.18);
+}
+
+[data-theme='gold'] {
+  --bg-darkest: hsl(44, 24%, 8%);
+  --bg-dark: hsl(46, 20%, 12%);
+  --accent-300: rgba(253, 224, 71, 1); /* yellow-300 */
+  --accent-300-80: rgba(253, 224, 71, 0.85);
+  --accent-border: rgba(234, 179, 8, 0.55); /* yellow-500 */
+  --accent-border-strong: rgba(234, 179, 8, 0.75);
+  --accent-ring: rgba(234, 179, 8, 0.14);
+  --accent-solid: rgb(234, 179, 8);
+  --accent-solid-hover: rgb(250, 204, 21);
+  --glow-spot: rgba(234, 179, 8, 0.18);
+}
+
+[data-theme='lime'] {
+  --bg-darkest: hsl(90, 30%, 8%);
+  --bg-dark: hsl(95, 24%, 12%);
+  --accent-300: rgba(190, 242, 100, 1); /* lime-300 */
+  --accent-300-80: rgba(190, 242, 100, 0.85);
+  --accent-border: rgba(132, 204, 22, 0.55); /* lime-500 */
+  --accent-border-strong: rgba(132, 204, 22, 0.75);
+  --accent-ring: rgba(132, 204, 22, 0.14);
+  --accent-solid: rgb(132, 204, 22);
+  --accent-solid-hover: rgb(163, 230, 53);
+  --glow-spot: rgba(132, 204, 22, 0.18);
+}
+
+[data-theme='teal'] {
+  --bg-darkest: hsl(180, 28%, 7%);
+  --bg-dark: hsl(184, 22%, 12%);
+  --accent-300: rgba(94, 234, 212, 1); /* teal-300 */
+  --accent-300-80: rgba(94, 234, 212, 0.85);
+  --accent-border: rgba(20, 184, 166, 0.55); /* teal-500 */
+  --accent-border-strong: rgba(20, 184, 166, 0.75);
+  --accent-ring: rgba(20, 184, 166, 0.14);
+  --accent-solid: rgb(20, 184, 166);
+  --accent-solid-hover: rgb(45, 212, 191);
+  --glow-spot: rgba(20, 184, 166, 0.18);
+}
+
+[data-theme='orchid'] {
+  --bg-darkest: hsl(276, 22%, 7%);
+  --bg-dark: hsl(278, 20%, 12%);
+  --accent-300: rgba(216, 180, 254, 1); /* violet-300 */
+  --accent-300-80: rgba(216, 180, 254, 0.85);
+  --accent-border: rgba(168, 85, 247, 0.55); /* violet-500 */
+  --accent-border-strong: rgba(168, 85, 247, 0.75);
+  --accent-ring: rgba(168, 85, 247, 0.14);
+  --accent-solid: rgb(168, 85, 247);
+  --accent-solid-hover: rgb(192, 132, 252);
+  --glow-spot: rgba(168, 85, 247, 0.18);
+}
+
+[data-theme='crimson'] {
+  --bg-darkest: hsl(350, 24%, 7%);
+  --bg-dark: hsl(355, 20%, 12%);
+  --accent-300: rgba(252, 165, 165, 1); /* red-300 */
+  --accent-300-80: rgba(252, 165, 165, 0.85);
+  --accent-border: rgba(239, 68, 68, 0.55); /* red-500 */
+  --accent-border-strong: rgba(239, 68, 68, 0.75);
+  --accent-ring: rgba(239, 68, 68, 0.14);
+  --accent-solid: rgb(239, 68, 68);
+  --accent-solid-hover: rgb(248, 113, 113);
+  --glow-spot: rgba(239, 68, 68, 0.18);
+}
+
+/* ACCENT UTILITIES */
+.accent-eyebrow {
+  color: var(--accent-300-80);
+}
+.accent-icon {
+  color: var(--accent-300);
+}
+.accent-outline {
+  border-color: var(--accent-border) !important;
+}
+.accent-left {
+  border-left: 4px solid var(--accent-border-strong) !important;
+}
+.accent-radial {
+  background-image: radial-gradient(
+    60% 40% at 50% 0%,
+    var(--glow-spot),
+    rgba(0, 0, 0, 0)
+  );
+}
+.btn-accent {
+  background-color: var(--accent-solid);
+  color: #000;
+}
+.btn-accent:hover {
+  background-color: var(--accent-solid-hover);
 }

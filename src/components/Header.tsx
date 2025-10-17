@@ -1,46 +1,125 @@
 // src/components/Header.tsx
-import React from 'react';
-import AstronautImage from '../assets/logo.png';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { FiMenu, FiX } from 'react-icons/fi';
 
 const Header: React.FC = () => {
+  const location = useLocation();
+  // Apple-like light header only on the Home page
+  const isApple = location.pathname === '/';
+  const [open, setOpen] = useState(false);
+
+  const headerBase = 'top-0 w-full';
+  const headerTheme = isApple ? '' : 'bg-black';
+
+  const brandClass = isApple
+    ? 'text-slate-900 hover:opacity-80'
+    : 'text-white hover:opacity-80';
+
+  const linkClass = isApple
+    ? 'text-slate-700 hover:text-slate-900'
+    : 'text-gray-200 hover:text-gray-400';
+
+  const contactClass = isApple
+    ? 'inline-flex items-center rounded-full border border-gray-300 bg-white px-4 py-2.5 text-slate-900 hover:bg-gray-50'
+    : 'inline-flex items-center rounded-full border border-zinc-700 bg-[var(--bg-dark)] px-4 py-2.5 text-gray-200 hover:bg-white/5';
+
+  const mobilePanelClass = isApple
+    ? 'bg-white border border-slate-200 text-slate-900'
+    : 'bg-[var(--bg-darkest)] border border-zinc-800 text-gray-200';
+
   return (
-    <header className='top-0 w-full'>
-      <div className=' max-w-7xl mx-auto px-4 flex items-center justify-between h-16'>
-        <div className='logo flex items-center'>
-          <a href='/'>
-            <img
-              src={AstronautImage}
-              alt='Astronaut Illustration'
-              className='h-full max-h-16 object-contain'
-            />
-          </a>
+    <header className={`${headerBase} ${headerTheme}`}>
+      <div className='max-w-7xl mx-auto px-4 flex items-center justify-between md:h-16 py-3 md:py-0 relative'>
+        <div className='flex items-center font-semibold tracking-tight'>
+          <Link to='/' className={brandClass}>
+            Gergen Software
+          </Link>
         </div>
 
         {/* Navigation */}
-        <nav className='navbar'>
-          <ul className='flex flex-col lg:flex-row lg:gap-8 space-x-6'>
+        <nav className='navbar hidden lg:block'>
+          <ul className='flex flex-row gap-8'>
             <li>
-              <a href='#services' className='text-gray-600 hover:text-gray-400'>
-                Services
-              </a>
+              <Link to='/' className={linkClass}>
+                Home
+              </Link>
             </li>
             <li>
-              <a href='#about' className='text-gray-600 hover:text-gray-400'>
-                About
-              </a>
-            </li>
-
-            <li>
-              <a href='#pricing' className='text-gray-600 hover:text-gray-400'>
-                Pricing
-              </a>
+              <Link to='/faq' className={linkClass}>
+                FAQ
+              </Link>
             </li>
           </ul>
         </nav>
 
-        <div className='logo flex items-center'>
-          <a href='#contact'>Contact Us</a>
+        {/* Desktop CTA */}
+        <div className='hidden lg:flex items-center'>
+          <a href='mailto:contact@gergensoftware.com' className={contactClass}>
+            Email us
+          </a>
         </div>
+
+        {/* Mobile menu toggle */}
+        <div className='lg:hidden'>
+          <button
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            aria-controls='mobile-nav'
+            onClick={() => setOpen((v) => !v)}
+            className={
+              (isApple
+                ? 'text-slate-800 hover:text-slate-900'
+                : 'text-gray-200 hover:text-white') +
+              ' inline-flex items-center justify-center rounded-md p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ' +
+              (isApple
+                ? 'focus-visible:ring-slate-300 focus-visible:ring-offset-white'
+                : 'focus-visible:ring-[var(--accent-border)] focus-visible:ring-offset-[var(--bg-darkest)]')
+            }
+          >
+            {open ? <FiX size={22} /> : <FiMenu size={22} />}
+          </button>
+        </div>
+
+        {/* Mobile dropdown panel */}
+        {open && (
+          <div
+            id='mobile-nav'
+            className={`lg:hidden absolute left-0 right-0 top-full mt-2 rounded-xl ${mobilePanelClass} shadow-xl`}
+            role='dialog'
+            aria-modal='false'
+          >
+            <ul className='flex flex-col divide-y divide-zinc-800/40'>
+              <li>
+                <Link
+                  to='/'
+                  className='block px-4 py-3'
+                  onClick={() => setOpen(false)}
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to='/faq'
+                  className='block px-4 py-3'
+                  onClick={() => setOpen(false)}
+                >
+                  FAQ
+                </Link>
+              </li>
+              <li className='p-3'>
+                <a
+                  href='mailto:contact@gergensoftware.com'
+                  className={`${contactClass} w-full justify-center`}
+                  onClick={() => setOpen(false)}
+                >
+                  Email us
+                </a>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </header>
   );
