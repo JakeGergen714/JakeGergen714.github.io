@@ -1,35 +1,20 @@
 // src/components/Header.tsx
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
 
 const Header: React.FC = () => {
-  const location = useLocation();
-  // Apple-like light header only on the Home page
-  const isApple = location.pathname === '/';
   const [open, setOpen] = useState(false);
-
+  // Consistent light theme across the site
   const headerBase = 'top-0 w-full';
-  const headerTheme = isApple ? '' : 'bg-black';
-
-  const brandClass = isApple
-    ? 'text-slate-900 hover:opacity-80'
-    : 'text-white hover:opacity-80';
-
-  const linkClass = isApple
-    ? 'text-slate-700 hover:text-slate-900'
-    : 'text-gray-200 hover:text-gray-400';
-
-  const contactClass = isApple
-    ? 'inline-flex items-center rounded-full border border-gray-300 bg-white px-4 py-2.5 text-slate-900 hover:bg-gray-50'
-    : 'inline-flex items-center rounded-full border border-zinc-700 bg-[var(--bg-dark)] px-4 py-2.5 text-gray-200 hover:bg-white/5';
-
-  const mobilePanelClass = isApple
-    ? 'bg-white border border-slate-200 text-slate-900'
-    : 'bg-[var(--bg-darkest)] border border-zinc-800 text-gray-200';
+  const brandClass = 'text-slate-900 hover:opacity-80';
+  const linkClass = 'text-slate-700 hover:text-slate-900';
+  const contactClass =
+    'inline-flex items-center rounded-full border border-gray-300 bg-white px-4 py-2.5 text-slate-900 hover:bg-gray-50';
+  const mobilePanelClass = 'bg-white border border-slate-200 text-slate-900';
 
   return (
-    <header className={`${headerBase} ${headerTheme}`}>
+    <header className={`${headerBase}`}>
       <div className='max-w-7xl mx-auto px-4 flex items-center justify-between md:h-16 py-3 md:py-0 relative'>
         <div className='flex items-center font-semibold tracking-tight'>
           <Link to='/' className={brandClass}>
@@ -68,13 +53,7 @@ const Header: React.FC = () => {
             aria-controls='mobile-nav'
             onClick={() => setOpen((v) => !v)}
             className={
-              (isApple
-                ? 'text-slate-800 hover:text-slate-900'
-                : 'text-gray-200 hover:text-white') +
-              ' inline-flex items-center justify-center rounded-md p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ' +
-              (isApple
-                ? 'focus-visible:ring-slate-300 focus-visible:ring-offset-white'
-                : 'focus-visible:ring-[var(--accent-border)] focus-visible:ring-offset-[var(--bg-darkest)]')
+              'text-slate-800 hover:text-slate-900 inline-flex items-center justify-center rounded-md p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-300 focus-visible:ring-offset-white'
             }
           >
             {open ? <FiX size={22} /> : <FiMenu size={22} />}

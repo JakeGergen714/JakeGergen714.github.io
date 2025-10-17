@@ -125,7 +125,7 @@ const FAQ: React.FC = () => {
   };
 
   return (
-    <main className='flex flex-col mx-auto font-sans w-full bg-transparent min-h-screen text-slate-900 relative z-10'>
+    <main className='flex flex-col mx-auto font-sans w-full bg-white min-h-screen text-slate-900 relative z-10'>
       <Helmet>
         <title>FAQ | Gergen Software</title>
         <meta
@@ -146,7 +146,9 @@ const FAQ: React.FC = () => {
       <section className='relative w-full flex justify-center px-4 pt-8 pb-12'>
         <div className='relative z-10 max-w-5xl w-full'>
           <div className='rounded-2xl border border-white/30 bg-white/70 md:bg-white/40 md:backdrop-blur-xl p-6 md:p-10 ring-1 ring-white/20 shadow-[0_10px_40px_rgba(2,132,199,0.06)]'>
-            <h1 className='text-slate-900 font-semibold text-4xl md:text-5xl'>FAQ</h1>
+            <h1 className='text-slate-900 font-semibold text-4xl md:text-5xl'>
+              FAQ
+            </h1>
             <p className='mt-3 text-slate-700 md:text-lg'>
               Straight answers about how our subscription partnership works.
             </p>
@@ -168,7 +170,9 @@ const FAQ: React.FC = () => {
                       className='w-full text-left px-4 py-3 flex justify-between items-center rounded-lg'
                       onClick={() => setOpen(expanded ? null : idx)}
                     >
-                      <span className='text-slate-900 font-medium'>{item.q}</span>
+                      <span className='text-slate-900 font-medium'>
+                        {item.q}
+                      </span>
                       <span className='text-slate-500 text-xl leading-none'>
                         {expanded ? '−' : '+'}
                       </span>
