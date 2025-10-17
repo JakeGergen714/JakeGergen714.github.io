@@ -9,7 +9,7 @@ const Layout: React.FC = () => {
   return (
     <div
       className={`min-h-screen flex flex-col ${
-        isApple ? 'bg-transparent' : 'bg-[var(--bg-darkest)]'
+        isApple ? 'bg-white' : 'bg-[var(--bg-darkest)]'
       }`}
     >
       <div
